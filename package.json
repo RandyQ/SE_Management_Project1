@@ -1,0 +1,13 @@
+{
+  "name": "project1",
+  "version": "1.0.0",
+  "description": "project1 node.js for SE Management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Randy Quimby",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
