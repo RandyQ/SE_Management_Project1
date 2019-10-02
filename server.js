@@ -14,7 +14,7 @@ app.get('/version', function(req, res){
 
 app.get('/logs', function(req, res) {
         res.type('text/plain');
-        fs.writeFile('./logs/logfile.txt', "hey hey hey", (err) => {
+        fs.appendFile('./logs/logfile.txt', "hey hey hey", "utf8", (err) => {
                 if (err) { 
                         throw err; 
                 }
