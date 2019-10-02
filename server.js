@@ -4,7 +4,7 @@ let app = express();
 const fs = require('fs');
 
 app.get('/', function(req, res) {
-        res.send("this is the home page");
+        res.send("this is the home page\n");
 });
 
 app.get('/version', function(req, res){
@@ -16,7 +16,7 @@ app.get('/version', function(req, res){
                 });
                 
                 res.type('text/plain');
-                res.send('This is version 0 of the HotBurger service');
+                res.send('This is version 0 of the HotBurger service\n');
         }
 });
 
@@ -46,5 +46,5 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(80, () => {
-        console.log('Example app listening on port 80!');
+        console.log('App listening on port 80!');
 });
