@@ -11,6 +11,6 @@ app.get('/version', function(req, res){
         res.send('This is version 0 of the HotBurger service');
 });
 
-app.listen(3000, () => {
-        console.log('Example app listening on port 3000!');
+app.listen(80, () => {
+        console.log('Example app listening on port 80!');
 });
