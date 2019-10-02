@@ -8,19 +8,28 @@ app.get('/', function(req, res) {
 });
 
 app.get('/version', function(req, res){
-        res.type('text/plain');
-        res.send('This is version 0 of the HotBurger service');
+        if (res) {
+                fs.appendFile('./logs/logfile.txt', "/version route was called.  The result was succesfully sent.\n", "utf8", (err) => {
+                        if (err) {
+                                throw new Err('Failure to append to file in /version route \n');
+                        }
+                });
+                
+                res.type('text/plain');
+                res.send('This is version 0 of the HotBurger service');
+        }
 });
 
 app.get('/logs', function(req, res) {
         res.type('text/plain');
-        fs.appendFile('./logs/logfile.txt', "hey hey hey", "utf8", (err) => {
-                if (err) { 
-                        throw err; 
-                }
-                
-                console.log('text written to file!');
-        });
+        // If a result was successfully sent
+        if (res) {
+                fs.appendFile('./logs/logfile.txt', "/logs route was called.  The result was succesfully sent.\n", "utf8", (err) => {
+                        if (err) {
+                                throw new Err('Failure to append to file in /logs route \n');
+                        }
+                });
+        }
 
         fs.readFile("./logs/logfile.txt", function(err, buf) {
                 res.send(buf.toString());
@@ -31,9 +40,9 @@ app.get('/logs', function(req, res) {
 });
 
 app.use(function(err, req, res, next) {
-        console.error(err.message);
+        fs.appendFile('./logs/logfile.txt', err.message, "utf8");
         res.type('text/plain');
-        res.status(500).send("An error has occurred");
+        res.status(500).send("An error has occurred.");
 });
 
 app.listen(80, () => {
