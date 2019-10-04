@@ -35,7 +35,7 @@ app.get('/logs', function(req, res) {
 function logFunctionCall(route) {
         fs.appendFile('./logs/logfile.txt', route + " route was called.  The result was succesfully sent.\n", "utf8", (err) => {
                 if (err) {
-                        throw new Err('Failure to append to file in ' + route + ' route \n');
+                        throw new Error('Failure to append to file in ' + route + ' route \n');
                 }
         });
 }
@@ -43,7 +43,7 @@ function logFunctionCall(route) {
 function resultFailed(route) {
         fs.appendFile('./logs/logfile.txt', route + " route was called.  The result FAILED to send.\n", "utf8", (err) => {
                 if (err) {
-                        throw new Err('Failure to append to file in ' + route + ' route \n');
+                        throw new Error('Failure to append to file in ' + route + ' route \n');
                 }
         });
 }
