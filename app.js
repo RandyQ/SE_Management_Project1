@@ -16,14 +16,7 @@ app.get('/logs', async function(req, res) {
         // If a result was successfully sent, write to the log (await) before reading from it
         res ? await logFunctionCall('/logs') : resultFailed('/logs');
         fs.readFile("./logs/logfile.txt", function(err, buf) {
-                if (err) {
-                        res.send("Failed to read file when calling the /logs route")
-                } else {
-                        let formattedString = "";
-                        // Add a breakpoint between each line to render the html on separate lines for each entry
-                        buf.toString().split('\n').forEach(item => { formattedString += item + "<br>" });
-                        res.send(formattedString);
-                }             
+                err ? res.send("Failed to read file when calling the /logs route") : res.send(buf.toString());
         });
 });
 
