@@ -40,4 +40,9 @@ function resultFailed(route) {
         });
 }
 
+app.use(function(req, res, next) {
+        res.status(404);
+        res.send('404 – Not Found');
+});
+
 module.exports = app;
